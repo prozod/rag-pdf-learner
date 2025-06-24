@@ -11,13 +11,11 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from deepgram import Deepgram
 
-# Load env vars
 load_dotenv()
 deepgram_api_key = os.getenv("deepgram_api_key")
 cartesia_api_key = os.getenv("cartesia_api_key")
 gemini_api_key = os.getenv("gemini_api_key")
 
-# Load embedding model
 embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # === TEXT TO SPEECH (CARTESIA) ===
@@ -58,7 +56,6 @@ def speak_text(text):
                 f.write(chunk)
 
         audio = AudioSegment.from_file("response.wav", format="wav")
-        # softer_audio = audio - 5
         play(audio)
         os.remove("response.wav")
 

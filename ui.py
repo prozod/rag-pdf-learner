@@ -12,14 +12,12 @@ st.title("EchoLens")
 st.markdown(
     "_Your AI study partner. Upload a PDF and ask questions by speaking._")
 
-# === Create a 2-column layout, 60% left for controls, 40% right for PDF ===
 left_col, right_col = st.columns([3, 2])
 
 with left_col:
-    # Upload PDF
     pdf_file = st.file_uploader("Upload a PDF", type=["pdf"])
 
-    # Show progress, process PDF, voice assistant UI
+    # show progress, process PDF, voice assistant UI
     if pdf_file is not None and "pdf_name" not in st.session_state:
         with open("temp_uploaded.pdf", "wb") as f:
             f.write(pdf_file.read())
@@ -95,7 +93,7 @@ Answer:"""
                 stt_output.warning("Nothing was transcribed. Try again.")
 
 with right_col:
-    # Show the uploaded PDF in an iframe fixed height and width
+    # show PDF in an iframe
     if pdf_file is not None:
         pdf_bytes = pdf_file.getvalue()
         base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
